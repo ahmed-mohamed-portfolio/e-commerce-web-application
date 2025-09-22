@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+@import "primeicons/primeicons.css";
+
+
+
+.owl-prev{
+position: absolute;
+    top: 50%;
+    left: 0;
+      transform: translateY(-50%);
+}
+
+
+
+.owl-next{
+   position: absolute;
+    top: 50%;
+    right: 0;
+      transform: translateY(-50%);
+}
+
+
+
+
+
+
+@font-face {
+    font-family: Agbalumo-Regular;
+    src: url(/fonts/Agbalumo-Regular.ttf);
+}
+
+@font-face {
+    font-family: BricolageGrotesque;
+    src: url(../public/fonts/BricolageGrotesque_24pt-Medium.ttf);
+}
+
+
+@theme{
+    --font-logo:Agbalumo-Regular,"sans-serif";
+    --font-words:BricolageGrotesque,"sans-serif";
+
+    --color-main-one:#39C5D0 ;
+    --color-main-one-hover:#00a6b2 ;
+    --color-main-two:#F85D3D ;
+    --color-main-bg:#F0F3F2 ;
+    --color-main-dark-bg : #6B7280 ;
+
+}

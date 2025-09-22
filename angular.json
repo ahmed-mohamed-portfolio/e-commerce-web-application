@@ -5,11 +5,19 @@
   "projects": {
     "eshop-web": {
       "projectType": "application",
-      "schematics": {
+
+     "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
-        }
+          "style": "scss" ,"type": "component"
+        },"@schematics/angular:directive": { "type": "directive" },
+        "@schematics/angular:service": { "type": "service" },
+        "@schematics/angular:guard": { "typeSeparator": "." },
+        "@schematics/angular:interceptor": { "typeSeparator": "." },
+        "@schematics/angular:module": { "typeSeparator": "." },
+        "@schematics/angular:pipe": { "typeSeparator": "." },
+        "@schematics/angular:resolver": { "typeSeparator": "." }
       },
+
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -30,7 +38,12 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
+              "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css" 
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
