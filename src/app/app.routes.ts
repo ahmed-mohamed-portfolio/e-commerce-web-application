@@ -14,9 +14,9 @@ export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
 
     {
-        path: '', component: AuthLayoutComponent, children: [
+        path: '', component: AuthLayoutComponent,canActivate: [isloggedGuard] ,  children: [
 
-            { path: 'login', loadComponent:()=>import('../../src/app/core/auth/login/login.component').then((res)=>res.LoginComponent),  canActivate: [isloggedGuard] , title: 'Login Page' },
+            { path: 'login', loadComponent:()=>import('../../src/app/core/auth/login/login.component').then((res)=>res.LoginComponent),  title: 'Login Page' },
             { path: 'register', loadComponent:()=>import('../../src/app/core/auth/register/register.component').then((res)=>res.RegisterComponent), title: 'Register Page' },
             { path: 'forget', loadComponent:()=>import('../../src/app/core/auth/forgetpassword/forgetpassword.component').then((res)=>res.ForgetpasswordComponent), title: 'forgetPassword' }
 
@@ -25,9 +25,9 @@ export const routes: Routes = [
     },
 
     {
-        path: '', component: BlankLayoutComponent, children: [
+        path: '', component: BlankLayoutComponent, canActivate: [authGuard] ,  children: [
 
-            { path: 'home', loadComponent:()=>import('../../src/app/features/home/home.component').then((res)=>res.HomeComponent), canActivate: [authGuard] , title: 'Home Page' },
+            { path: 'home', loadComponent:()=>import('../../src/app/features/home/home.component').then((res)=>res.HomeComponent), title: 'Home Page' },
             { path: 'cart',loadComponent:()=>import('../../src/app/features/cart/cart.component').then((res)=>res.CartComponent), title: 'Cart Page' },
             { path: 'products', loadComponent:()=>import('../../src/app/features/products/products.component').then((res)=>res.ProductsComponent), title: 'Products Page' },
             { path: 'brands', loadComponent:()=>import('../../src/app/features/brands/brands.component').then((res)=>res.BrandsComponent), title: 'Brands Page' },
