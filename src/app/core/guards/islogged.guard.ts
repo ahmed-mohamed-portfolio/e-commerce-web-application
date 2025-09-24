@@ -10,14 +10,11 @@ export const isloggedGuard: CanActivateFn = (route, state) => {
 
   const router: Router = inject(Router)
   const cookieService = inject(CookieService)
-
-  //ask if that i may need or not
-
   const platformId = inject(PLATFORM_ID);
 
-  // if (!isPlatformBrowser(platformId)) {
-  //   return true
-  // }
+  if (!isPlatformBrowser(platformId)) {
+    return true
+  }
 
 
   if (cookieService.get("token")) {
