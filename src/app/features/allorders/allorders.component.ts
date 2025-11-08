@@ -24,14 +24,25 @@ export class AllordersComponent {
   token!: string;
   ngOnInit(): void {
 
-    this.token = this.authService.decodeToken().id
-    this.getOrdersUserData();
+
+    const decoded = this.authService.decodeToken();
+    
+    if (!decoded.id) {
+      console.log("there is no decoded.id", decoded.id);
+
+      return;
+    }
+
+    this.getOrdersUserData(decoded.id);
+
 
   }
 
 
-  getOrdersUserData() {
-    this.getUserOrdersService.getUserOrder(this.token).subscribe({
+  getOrdersUserData(userId: string) {
+    console.log("this.token", this.token);
+
+    this.getUserOrdersService.getUserOrder(userId).subscribe({
       next: (res) => {
         this.lastUerOrder = res[res.length - 1].cartItems;
         this.lastUerOrderInfo = res[res.length - 1].shippingAddress;
