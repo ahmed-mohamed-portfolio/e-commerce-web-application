@@ -8,10 +8,11 @@
             <span
                 class="self-center  text-2xl text-gray-700 font-semibold whitespace-nowrap dark:text-white font-logo">e-shop</span>
         </a>
-
-
+        
+        
+        <div class="flex md:order-2  items-center">
         @if(isLogin==false){
-
+            
 
         <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
 
@@ -35,8 +36,7 @@
         </div>
         }
 
-        @if(isLogin==true){
-        <div class="flex md:order-2  items-center">
+            @if(isLogin==true){
 
 
 
@@ -57,6 +57,7 @@
                 </div>
 
             </div>
+            }
 
 
             <!-- NavBar Broducts -->
@@ -100,17 +101,18 @@
                         class="block py-2 px-3 text-gray-500 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-main-two md:p-0 md:dark:hover:text-main-two dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 cursor-pointer"><i
                             class="fa-brands fa-product-hunt"></i>Products</a>
                 </li>
-                <hr class="md:hidden w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded-sm md:my-10 dark:bg-gray-700">
+                @if(isLogin==true){
 
+                <hr class="md:hidden w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded-sm md:my-10 dark:bg-gray-700">
                 <li class="md:hidden">
                     <a (click)="logout()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
                         class="block py-2 px-3 text-gray-500 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-main-two md:p-0 md:dark:hover:text-main-two dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 cursor-pointer"><i
                             class="fa-brands fa-product-hunt"></i>LogOut</a>
                 </li>
+                }
             </ul>
         </div>
 
-        }
 
     </div>
 </nav>

@@ -12,6 +12,7 @@ export const isloggedGuard: CanActivateFn = (route, state) => {
   const cookieService = inject(CookieService)
   const platformId = inject(PLATFORM_ID);
 
+     //this is danguerous and problem i need to solve it
   if (!isPlatformBrowser(platformId)) {
     return true
   }

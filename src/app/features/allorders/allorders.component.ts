@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { GetUserOrdersService } from '../../core/services/userOrders/get-user-orders.service';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { CartItem, Root2, ShippingAddress, UserOrder } from '../../core/models/user-order';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, isPlatformBrowser } from '@angular/common';
 import { DatePipe } from '@angular/common';
 
 
@@ -22,27 +22,23 @@ export class AllordersComponent {
   allOrders: UserOrder = []
 
   token!: string;
+  private platformId = inject(PLATFORM_ID);
+
   ngOnInit(): void {
 
-
-    const decoded = this.authService.decodeToken();
-    
-    if (!decoded.id) {
-      console.log("there is no decoded.id", decoded.id);
-
-      return;
+    //this is danguerous and problem i need to solve it
+    if (!isPlatformBrowser(this.platformId)) {
+      return
     }
 
-    this.getOrdersUserData(decoded.id);
-
+    this.token = this.authService.decodeToken().id
+    this.getOrdersUserData();
 
   }
 
 
-  getOrdersUserData(userId: string) {
-    console.log("this.token", this.token);
-
-    this.getUserOrdersService.getUserOrder(userId).subscribe({
+  getOrdersUserData() {
+    this.getUserOrdersService.getUserOrder(this.token).subscribe({
       next: (res) => {
         this.lastUerOrder = res[res.length - 1].cartItems;
         this.lastUerOrderInfo = res[res.length - 1].shippingAddress;

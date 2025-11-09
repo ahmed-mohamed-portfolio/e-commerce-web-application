@@ -30,14 +30,10 @@
         @for (product of lastUerOrder ; track $index) {
 
         <tr
-          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
-        >
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
           <td class="p-4">
-            <img
-              [src]="product.product.imageCover"
-              class="w-16 md:w-32 max-w-full max-h-full"
-              [alt]="product.product.title"
-            />
+            <img [src]="product.product.imageCover" class="w-16 md:w-32 max-w-full max-h-full"
+              [alt]="product.product.title" />
           </td>
           <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
             {{ product.product.title }}
@@ -54,10 +50,16 @@
 
   <!-- all orders -->
 
-  <p class="text-red-500 font-bold text-3xl text-center mt-14">your previous orders :</p>
-  @for (item of allOrders ; track $index) {
+  <p class="text-red-500 font-bold text-3xl text-center mt-20">your previous orders :</p>
+@defer (on interaction ) {
+  @if(allOrders.length===1){
+  <p>there is no previous orders</p>
+  }@else{
+  @for (item of allOrders ; track $index ; let isFirst = $first) {
 
-  <div class="mt-44">
+  @if (!isFirst) {
+
+  <div class="mt-14">
 
 
     <div class="bg-amber-200 flex flex-col rounded w-fit p-3 m-4">
@@ -69,9 +71,7 @@
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead
-          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-        >
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
             <th scope="col" class="px-16 py-3">
               <span class="sr-only">Image</span>
@@ -86,14 +86,10 @@
           @for (product of item.cartItems ; track $index) {
 
           <tr
-            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
-          >
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
             <td class="p-4">
-              <img
-                [src]="product.product.imageCover"
-                class="w-16 md:w-32 max-w-full max-h-full"
-                [alt]="product.product.title"
-              />
+              <img [src]="product.product.imageCover" class="w-16 md:w-32 max-w-full max-h-full"
+                [alt]="product.product.title" />
             </td>
             <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
               {{ product.product.title }}
@@ -111,6 +107,8 @@
     </div>
 
   </div>
-  }
+  }}}
+}
+@placeholder {<div class="underline cursor-pointer" ><span class="text-blue-800">Click Here </span> to show the previous orders ...</div>}
 
 </div>

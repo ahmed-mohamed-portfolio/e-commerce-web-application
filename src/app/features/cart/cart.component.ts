@@ -1,5 +1,5 @@
-import { CommonModule, TitleCasePipe, UpperCasePipe } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule, isPlatformBrowser, TitleCasePipe, UpperCasePipe } from '@angular/common';
+import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { GetCartFromApiService } from '../../core/services/cart/get-cart-from-api.service';
 import { CartDataRes } from '../../core/models/cart-data-res';
 import { RemoveCartItemService } from '../../core/services/cart/remove-cart-item.service';
@@ -28,7 +28,16 @@ export class CartComponent implements OnInit {
   private countCartService = inject(CountCartService)
 
 
+  private platformId = inject(PLATFORM_ID);
   ngOnInit(): void {
+
+
+    
+    //this is danguerous and problem i need to solve it
+    if (!isPlatformBrowser(this.platformId)) {
+      return
+    }
+
     this.getCartItems();
   }
 
